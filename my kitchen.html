@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="eng" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مطبخ إسراء</title>
+
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      margin: 0;
+      background-color: hsl(288, 50%, 74%);
+      background-image: url("Assests/img/background.jpg");
+    }
+
+    .head {
+      font-size: 2.5em;
+      text-align: center;
+      color: #4b1763;
+      padding: 5px;
+    }
+
+   .hero {
+     position: relative;
+     overflow: hidden;
+     height: 400px;
+     width: 100%;
+     background-color: #4b1763;
+     color: rgb(239, 81, 173);
+     text-align: center;
+     clip-path: path("M0 0 H100% V100% H0 Z M0 300 Q50% 360 100% 300"); 
+     clip-path: none;
+     transition: clip-path 0.25s ease-out;
+    }
+
+    .slides {
+     display: flex;
+     flex-direction: row;
+     width: 100%;  
+     height: 100%;
+     transition: transform 0.6s ease-in-out;
+    }
+
+    .slide {
+     width: 100%;
+     height: 100%;
+     flex-shrink: 0; /* منع الانكماش */
+    }
+
+    .slide img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+    }
+
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(207, 72, 205, 0.6);
+      border: none;
+      font-size: 2em;
+      cursor: pointer;
+      padding: 10px 15px;
+      border-radius: 50%;
+      z-index: 5;
+      transition: 0.3s;
+      color: white;
+    }
+
+    .arrow:hover {
+      transform: translateY(-50%) scale(1.3);
+    }
+
+    .arrow.left { left: 15px; }
+    .arrow.right { right: 15px; }
+
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,0.6);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .dot.active {
+      background-color: white;
+    }
+
+    
+    section.recipe {
+      background-color: #7b157f;
+      border-radius: 12px;
+      margin: 40px auto;
+      width: 50%;
+      padding: 20px;
+      color: white;
+      box-shadow: 0 0 10px #4b1763;
+    }
+
+    section.recipe img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .cont {
+      background-color: white;
+      margin: 10px;
+      padding: 10px;
+      color: #4b1763;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #6640641a;
+    }
+
+    h2, h3 {
+      color: #440c27;
+    }
+
+    ul {
+      text-align: left;
+      color: #333;
+    }
+    /* Accordion for ingredients & instructions  */
+
+    .cont ul {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .cont.open ul {
+      max-height: 500px; 
+    }
+
+    .cont h3 {
+      cursor: pointer;
+      padding: 10px;
+      margin: 0;
+      background-color: #d685ee;
+      border-radius: 8px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+<div class="head"><h1>Israa Kitchen</h1></div>
+
+<!--===== HERO =====-->
+<div class="hero">
+  <div class="slides" id="slides">
+
+    
+    <div class="slide"><img src="Assests\img\Dolmahero.png" onclick="goToRecipe('dolma')" alt="دولما"></div>
+    <div class="slide"><img src="Assests\img\meathero.png" onclick="goToRecipe('meat')" alt="لحم مع الخضار"></div>
+    <div class="slide"><img src="Assests\img\softhero.png" onclick="goToRecipe('dough')" alt="عجينة"></div>
+
+  </div>
+
+  <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+  <button class="arrow right" onclick="nextSlide()">&#10095;</button>
+
+  <div class="dots" id="dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+</div>
+
+<!-- وصفة1 -->
+<section class="recipe" id = "dolma">
+  <h2>Dolma</h2>
+  <img src="Assests\img\DOLMA.png" alt="Dolma">
+
+  <div class="cont">
+    <h3>Ingredients:</h3>
+    <ul style = "list-style-type: none;">
+      <li>20 eggplants</li>
+      <li>20 peppers</li>
+      <li>Grape leaves</li>
+      <li>400g minced meat</li>
+      <li>2 cups rice</li>
+      <li>3 onions</li>
+      <li>4–5 garlic cloves</li>
+      <li>1 tbsp pepper paste</li>
+      <li>2 tbsp tomato paste</li>
+      <li>1 bowl tomato sauce</li>
+      <li>1 cup olive oil</li>
+      <li>½ cup pomegranate molasses</li>
+      <li>Parsley pinch</li>
+      <li>Black pepper, paprika, salt</li>
+      <li>Sumac</li>
+      <li>5–6 ribs</li>
+    </ul>
+  </div>
+
+  <div class="cont">
+    <h3>Instructions:</h3>
+    <ul style = "list-style-type: none;">
+      <li>Boil grape leaves 10 minutes.</li>
+      <li>Hollow vegetables.</li>
+      <li>Mix filling well.</li>
+      <li>Stuff vegetables.</li>
+      <li>Arrange in pot with ribs.</li>
+      <li>Cook 45 minutes.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- وصفة 2 -->
+<section class="recipe" id = "dough">
+  <h2>Soft Multi-purpose Dough</h2>
+  <img src="Assests/img/soft.png" alt="Dough">
+
+  <div class="cont">
+    <h3>Ingredients:</h3>
+    <ul style = "list-style-type: none;">
+      <li>1 cup milk</li>
+      <li>1 cup water</li>
+      <li>½ cup oil</li>
+      <li>1 tbsp sugar</li>
+      <li>2 tbsp yeast</li>
+      <li>5 cups flour</li>
+      <li>1 tsp salt</li>
+    </ul>
+  </div>
+
+  <div class="cont">
+    <h3>Instructions:</h3>
+    <ul style = "list-style-type: none;">
+      <li>Mix all ingredients.</li>
+      <li>Let rest 1 hour.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- وصفة 3 -->
+<section class="recipe" id ="meat">
+  <h2>Meat With Vegetables</h2>
+  <img src="Assests/img/meat.png" alt="Meat">
+
+  <div class="cont">
+    <h3>Ingredients:</h3>
+    <ul style = "list-style-type: none;">
+      <li>600g lamb</li>
+      <li>Garlic</li>
+      <li>Tomatoes</li>
+      <li>Green peppers</li>
+      <li>Tail fat</li>
+      <li>Spices</li>
+    </ul>
+  </div>
+
+  <div class="cont">
+    <h3>Instructions:</h3>
+    <ul style = "list-style-type: none;">
+      <li>Season lamb.</li>
+      <li>Prepare sauce.</li>
+      <li>Bake 50 min covered.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- JavaScript -->
+<script>
+  const slides = document.getElementById('slides');
+  const dots = document.querySelectorAll('.dot');
+  const totalSlides = document.querySelectorAll('.slide').length;
+  let currentIndex = 0;
+
+  function updateSlidePosition() {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlidePosition();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlidePosition();
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    updateSlidePosition();
+  }
+
+  setInterval(nextSlide, 5000);  /*time sleep in the hero slides*/
+  
+  document.querySelectorAll("section.recipe").forEach(recipe => {
+  const sections = recipe.querySelectorAll(".cont");
+
+  sections.forEach((box, index) => {
+    const title = box.querySelector("h3");
+    
+    title.addEventListener("click", () => {
+      sections.forEach((other, i) => {
+        if (i === index) {
+          other.classList.toggle("open");
+        } 
+        
+      });
+    });
+  });
+});
+function goToRecipe(id){
+  document.getElementById(id).scrollIntoView({ behavior: "smooth" });
+}
+
+</script>
+
+</body>
+</html>
